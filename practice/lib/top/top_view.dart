@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:practice/post/post_view.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../top/top_view_model.dart'; // ViewModelファイルへのパス
-import '../top/top_model.dart'; // Modelファイルへのパス
 
 class TopView extends ConsumerWidget {
+
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    final models = ref.watch(myViewModelProvider);
+    final String snackName = ref.watch(snackNameProvider);
+    final String snackComment = ref.watch(snackCommentProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('MVVM Sample with Riverpod')),
-      body: ListView.builder(
-        itemCount: models.length,
-        itemBuilder: (context, index) {
-          final model = models[index];
-          return ListTile(
-            title: Text('投稿を一覧で表示する'),
-            trailing: IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                ref.read(myViewModelProvider.notifier).removeModel(model);
-              },
-            ),
-          );
-        },
+      appBar: AppBar(title: Text('お菓子投稿一覧')),
+      body:  Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              title: Text(snackName),
+              subtitle: Text(snackComment),
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // データを追加する
-          ref.read(myViewModelProvider.notifier).addModel(
-            TopModelNotifier(title: '新しいアイテム', description: '新しい説明'),
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PostScreen()),
           );
         },
         child: Icon(Icons.add),

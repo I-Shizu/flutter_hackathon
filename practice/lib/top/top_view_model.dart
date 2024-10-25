@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../top/top_model.dart';  // Modelファイルへのパス
 
@@ -18,4 +19,12 @@ class MyViewModel extends StateNotifier<List<TopModelNotifier>> {
 // プロバイダー定義
 final myViewModelProvider = StateNotifierProvider<MyViewModel, List<TopModelNotifier>>((ref) {
   return MyViewModel();
+});
+
+final snackNameProvider = Provider<String>((ref){
+  return 'お菓子';
+});
+
+final snackCommentProvider = Provider<String>((ref){
+  return 'お菓子の感想';
 });
