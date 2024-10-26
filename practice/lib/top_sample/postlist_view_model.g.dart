@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'post_view_model.dart';
+part of 'postlist_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$postViewModelNotifierHash() =>
-    r'd974ac6b2d6089ae1e114ad5b37b6f16dc53f613';
+String _$postlistViewModelHash() => r'b979d0624c203002509ec09f50b7930f040bd2ae';
 
-/// See also [PostViewModelNotifier].
-@ProviderFor(PostViewModelNotifier)
-final postViewModelNotifierProvider =
-    AutoDisposeNotifierProvider<PostViewModelNotifier, List<Post>>.internal(
-  PostViewModelNotifier.new,
-  name: r'postViewModelNotifierProvider',
+/// See also [PostlistViewModel].
+@ProviderFor(PostlistViewModel)
+final postlistViewModelProvider =
+    AutoDisposeAsyncNotifierProvider<PostlistViewModel, List<Post>>.internal(
+  PostlistViewModel.new,
+  name: r'postlistViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$postViewModelNotifierHash,
+      : _$postlistViewModelHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PostViewModelNotifier = AutoDisposeNotifier<List<Post>>;
+typedef _$PostlistViewModel = AutoDisposeAsyncNotifier<List<Post>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

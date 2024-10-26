@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:practice/post/post_view_model.dart';
+import 'package:practice/top_sample/postlist_view_model.dart';
 
 class PostScreen extends ConsumerWidget {
   final TextEditingController _snackNameController = TextEditingController();
@@ -9,7 +9,7 @@ class PostScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final postViewModel = ref.read(postViewModelNotifierProvider.notifier);
+    final postViewModel = ref.read(postlistViewModelProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
