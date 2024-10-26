@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:practice/post/post_view.dart';
+import 'package:production/post/post_view.dart';
 import 'firebase_options.dart';
 
 void main() async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:practice/post/post_view_model.dart';
+import 'package:production/post/post_view_model.dart';
 
 class PostScreen extends ConsumerWidget {
   final TextEditingController _snackNameController = TextEditingController();
