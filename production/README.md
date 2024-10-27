@@ -18,8 +18,6 @@ tbd
 flutterのコマンドを使う際は、この「/flutter_hackathon/production」フォルダに移動してから実行お願いします。
 ```
 cd production 
-fvm clean
-fvm pub get
 fvm flutter run
 ...
 ```
@@ -30,10 +28,23 @@ generatorを動かす
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
+起動失敗した時のとりあえずコマンド
+```
+fvm clean
+fvm pub get
+fvm flutter run
+```
+
 ## appid
 com.beengineer.prd
 
-## libフォルダ構成
+## フォルダ関連
+主に修正するフォルダ一覧
+
+### assetsフォルダ
+画像や音楽などのファイルを置く場所
+
+### libフォルダ
 
 * Models
   * Modelを定義して共通で利用する
@@ -55,4 +66,11 @@ com.beengineer.prd
   * https://console.firebase.google.com/u/0/project/flutter-hackathon-prd/overview
 * Google Docs(会話のメモなど
   * https://docs.google.com/document/d/1ky1BH8u6BeQuKaUb1gbCuuIs9TKuwS-QPEhCeLxGo1U/edit?tab=t.0
+
+
+### デザイン関連ツール
+* カラー選択
+  * https://colorhunt.co/palette/c4e1f6feee91ffbd73ff9d3d
+* フリー画像
+  * https://undraw.co/illustrations
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:production/feature/sample_firestore/sample_list_view.dart';
+import 'package:production/sample_top_page.dart';
+import 'package:production/theme/themes.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -19,12 +20,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sample App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      theme: AppTheme.lightTheme,
       // PostScreenをトップ画面に設定
-      home: SampleListView(),
+      home: SampleTopPage(),
     );
   }
 }
