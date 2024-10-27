@@ -1,0 +1,45 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "flutter-hackathon-prd",
+          "appId": "1:239897256756:android:f8e51b4ca345b1640a7b61",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "flutter-hackathon-prd",
+          "appId": "1:239897256756:ios:97bd64354d344c770a7b61",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "flutter-hackathon-prd",
+          "configurations": {
+            "android": "1:239897256756:android:f8e51b4ca345b1640a7b61",
+            "ios": "1:239897256756:ios:97bd64354d344c770a7b61",
+            "web": "1:239897256756:web:d747f9256636c0290a7b61"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

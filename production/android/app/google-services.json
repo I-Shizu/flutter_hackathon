@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "239897256756",
+    "project_id": "flutter-hackathon-prd",
+    "storage_bucket": "flutter-hackathon-prd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:239897256756:android:f8e51b4ca345b1640a7b61",
+        "android_client_info": {
+          "package_name": "com.beengineer.prd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7joDMotc6Clm5LwTYZKa8Sl56Qob6K7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
