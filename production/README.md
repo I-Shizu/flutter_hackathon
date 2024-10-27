@@ -119,7 +119,8 @@ lib/theme/themes.dart
   * https://console.firebase.google.com/u/0/project/flutter-hackathon-prd/overview
 * Google Docs(会話のメモなど
   * https://docs.google.com/document/d/1ky1BH8u6BeQuKaUb1gbCuuIs9TKuwS-QPEhCeLxGo1U/edit?tab=t.0
-
+* スプレッドシート（設計などする時用
+  * https://docs.google.com/spreadsheets/d/1iDPhG5hca7JvYjNhuLV0pkD7dDn_B653Utck_osoCNE/edit?gid=0#gid=0
 
 ### デザイン関連ツール
 * カラー選択
