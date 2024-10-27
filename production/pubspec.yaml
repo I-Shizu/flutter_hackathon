@@ -44,7 +44,7 @@ dependencies:
   riverpod_annotation: ^2.5.3
   path_provider:
   flutter_svg:
-  flutter_launcher_icons:
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
@@ -66,9 +66,11 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 
 flutter_icons:
-  android: true
+  android: "launcher_icon"
   ios: true
   image_path: "assets/icon/icon.png"
+  # android_adaptive_icon_background: "assets/icon/icon_background.png" # 背景画像
+  # android_adaptive_icon_foreground: "assets/icon/icon.png" # 前景画像
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -83,6 +85,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/
+    - assets/icon/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

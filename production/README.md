@@ -82,7 +82,7 @@ assets/icon/icon.png
 差し替えたら、以下のコマンドを実行する。
 
 ```
-flutter pub run flutter_launcher_icons:main
+fvm flutter pub run flutter_launcher_icons:main
 ```
 runすれば、iconが変更される。
 
