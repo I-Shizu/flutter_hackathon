@@ -3,6 +3,9 @@
 ## 作るアプリ
 tbd
 
+## appid
+com.beengineer.prd
+
 ## ルール
 * flutterバージョン
   * 3.24.0
@@ -39,9 +42,12 @@ fvm flutter run
 
 ### iOSにデプロイ
 TestFlightで試すで良さそう。
-xcodeでアーカイブして、配信。
 ただし、iOSアプリをメールアドレスやデバイスIDの登録なしに完全に公開することは難しいっぽいので、
 やるとしても、チーム内だけで良さそう。
+
+まずは、flutter 
+
+xcodeでアーカイブして、配信。
 
 ### Androidでデプロイ
 以下のコマンドでapkファイル作成し、App Distrubutionで配信
@@ -69,8 +75,22 @@ fvm flutter build web
 firebase deploy 
 ```
 
-## appid
-com.beengineer.prd
+### iconの設定方法
+assets/icon/icon.png
+このファイルを差し替える。
+名前は、icon.pngのまま
+差し替えたら、以下のコマンドを実行する。
+
+```
+flutter pub run flutter_launcher_icons:main
+```
+runすれば、iconが変更される。
+
+### カラーの設定
+lib/theme/themes.dart
+このファイルの、「AppColors」に定義された色を変更すればOK。
+各ウィジェット内は、基本、色を指定しなくてOK。
+色を特別変更したいところだけ、Widget内で直接指定する。
 
 ## フォルダ関連
 主に修正するフォルダ一覧
