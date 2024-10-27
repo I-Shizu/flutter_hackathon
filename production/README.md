@@ -15,24 +15,58 @@ tbd
   * freezed
 
 ## 使い方
-flutterのコマンドを使う際は、この「/flutter_hackathon/production」フォルダに移動してから実行お願いします。
+ターミナルでコマンドを打つ時は、「/flutter_hackathon/production」フォルダに移動してから実行お願いします。
+
+例
 ```
 cd production 
 fvm flutter run
 ...
 ```
 
-### 便利コマンド
-generatorを動かす
+## 便利コマンド
+### generatorを動かす
 ```
 flutter pub run build_runner build --delete-conflicting-outputs
 ```
 
-起動失敗した時のとりあえずコマンド
+### 起動失敗した時のとりあえずコマンド
 ```
 fvm clean
 fvm pub get
 fvm flutter run
+```
+
+### iOSにデプロイ
+TestFlightで試すで良さそう。
+xcodeでアーカイブして、配信。
+ただし、iOSアプリをメールアドレスやデバイスIDの登録なしに完全に公開することは難しいっぽいので、
+やるとしても、チーム内だけで良さそう。
+
+### Androidでデプロイ
+以下のコマンドでapkファイル作成し、App Distrubutionで配信
+
+```
+fvm flutter build apk --release
+```
+app/outputs/apk/release/app-release.apkを App Distribution にドラッグ&ドロップでアップロード
+
+参考：https://zenn.dev/heyhey1028/books/flutter-firebase-handson/viewer/wrap_up5
+
+
+### Webにデプロイ
+デモの時に、Webで触ってみたくなった時用
+URL:https://flutter-hackathon-prd.web.app/
+
+デプロイされるフォルダ
+```
+build/web
+```
+
+hostingにデプロイする方法
+```
+fvm flutter build web
+firebase deploy 
 ```
 
 ## appid
@@ -45,7 +79,6 @@ com.beengineer.prd
 画像や音楽などのファイルを置く場所
 
 ### libフォルダ
-
 * Models
   * Modelを定義して共通で利用する
 * Repositories 
