@@ -77,6 +77,7 @@ firebase deploy
 
 ### iconの設定方法
 assets/icon/icon.png
+サイズは、1024 × 1024
 このファイルを差し替える。
 名前は、icon.pngのまま
 差し替えたら、以下のコマンドを実行する。
