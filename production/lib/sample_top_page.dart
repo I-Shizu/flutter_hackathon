@@ -4,7 +4,7 @@ import 'package:production/feature/sample_cloudstorage/sample_cloud_storage_view
 import 'package:production/feature/sample_firestore/sample_list_view.dart';
 
 class SampleTopPage extends StatelessWidget {
-  const SampleTopPage({Key? key}) : super(key: key);
+  const SampleTopPage({super.key});
 
   void _showSampleDialog(BuildContext context) {
     showDialog(
@@ -67,11 +67,11 @@ class SampleTopPage extends StatelessWidget {
                 child: const Text('Go to Cloud Storage Sample Page'),
               ),
               const SizedBox(height: 20),
-              Card(
+              const Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(16.0),
                   child: Column(
-                    children: const [
+                    children: [
                       Text('This is a sample card'),
                       SizedBox(height: 8),
                       Text('It demonstrates the card theme styling'),

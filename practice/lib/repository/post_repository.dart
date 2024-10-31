@@ -20,7 +20,7 @@ class PostRepository {
     try {
       final snapshot = await _firestore.collection('posts').get();
       return snapshot.docs.map((doc) {
-        return Post.fromJson(doc.data() as Map<String, dynamic>);
+        return Post.fromJson(doc.data());
       }).toList();
     } catch (e) {
       throw Exception('Failed to fetch posts: $e');

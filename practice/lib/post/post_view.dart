@@ -13,7 +13,7 @@ class PostScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post a Review'),
+        title: const Text('Post a Review'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

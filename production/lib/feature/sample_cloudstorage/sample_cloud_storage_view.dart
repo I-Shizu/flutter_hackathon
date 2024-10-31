@@ -6,7 +6,7 @@ import 'sample_cloud_storage_view_model.dart';
 import 'dart:io';
 
 class SampleCloudStorageView extends ConsumerWidget {
-  const SampleCloudStorageView({Key? key}) : super(key: key);
+  const SampleCloudStorageView({super.key});
 
   /// アセット画像を一時ファイルとして保存し、そのファイルパスを返す
   Future<String> _getLocalFilePathFromAsset(String assetPath) async {

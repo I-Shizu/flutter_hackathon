@@ -12,7 +12,15 @@ class TopScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Posts'),
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Spacer(),
+            Text('お菓子投稿'),
+            Spacer(),
+            Icon(Icons.settings),
+          ],
+        )
       ),
       body: viewState.when(
         initial: () => const Center(child: Text('No posts yet.')),

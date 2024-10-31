@@ -14,7 +14,7 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Sample App',
       theme: AppTheme.lightTheme,
       // PostScreenをトップ画面に設定
-      home: SampleTopPage(),
+      home: const SampleTopPage(),
     );
   }
 }

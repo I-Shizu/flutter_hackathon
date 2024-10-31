@@ -51,22 +51,20 @@ class AppColors {
 // アプリ全体のテーマを設定するクラス
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
       primaryContainer: AppColors.primaryContainer,
       secondary: AppColors.secondary,
       secondaryContainer: AppColors.secondaryContainer,
       surface: AppColors.surface,
-      background: AppColors.background,
       error: AppColors.error,
       onPrimary: AppColors.onPrimary,
       onSecondary: AppColors.onSecondary,
       onSurface: AppColors.onSurface,
-      onBackground: AppColors.onBackground,
       onError: AppColors.onError,
     ),
     scaffoldBackgroundColor: AppColors.background,
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: AppColors.primary,
       foregroundColor: AppColors.onPrimary,
       iconTheme: IconThemeData(color: AppColors.onPrimary),
@@ -83,7 +81,7 @@ class AppTheme {
         foregroundColor: AppColors.onPrimary,
       ),
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: AppColors.secondary,
       foregroundColor: AppColors.onSecondary,
       elevation: 1,
@@ -98,12 +96,12 @@ class AppTheme {
     ),
     dialogTheme: DialogTheme(
       backgroundColor: AppColors.background,
-      titleTextStyle: TextStyle(
+      titleTextStyle: const TextStyle(
         color: AppColors.onBackground,
         fontSize: 20,
         fontWeight: FontWeight.bold,
       ),
-      contentTextStyle: TextStyle(
+      contentTextStyle: const TextStyle(
         color: AppColors.onBackground,
         fontSize: 16,
       ),
@@ -115,22 +113,22 @@ class AppTheme {
       backgroundColor: AppColors.primary,
       selectedItemColor: AppColors.onPrimary,
       unselectedItemColor: AppColors.onPrimary.withOpacity(0.7),
-      selectedIconTheme: IconThemeData(size: 28),
-      unselectedIconTheme: IconThemeData(size: 24),
+      selectedIconTheme: const IconThemeData(size: 28),
+      unselectedIconTheme: const IconThemeData(size: 24),
     ),
     chipTheme: ChipThemeData(
       backgroundColor: AppColors.primaryContainer,
-      labelStyle: TextStyle(color: AppColors.onPrimary),
+      labelStyle: const TextStyle(color: AppColors.onPrimary),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       elevation: 0,
     ),
-    iconTheme: IconThemeData(
+    iconTheme: const IconThemeData(
       color: AppColors.onBackground,
       size: 24,
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       bodyLarge: TextStyle(color: AppColors.onBackground),
       bodyMedium: TextStyle(color: AppColors.onBackground),
       titleLarge: TextStyle(color: AppColors.onBackground),

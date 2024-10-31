@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:production/models/sample_model.dart';
 import 'package:production/repositories/firestore_sample_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

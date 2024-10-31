@@ -4,7 +4,7 @@ import 'package:production/models/sample_model.dart';
 import 'sample_view_model.dart';
 
 class SampleListView extends ConsumerWidget {
-  const SampleListView({Key? key}) : super(key: key);
+  const SampleListView({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
