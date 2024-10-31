@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:production/feature/sample_cloudstorage/sample_cloud_storage_view.dart';
 import 'package:production/feature/sample_firestore/sample_list_view.dart';
 
@@ -12,8 +13,18 @@ class SampleTopPage extends StatelessWidget {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Sample Dialog'),
-        content:
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Lottie.asset(
+              'assets/lottie/lottiefilesample.json',
+              height: 100, // アニメーションのサイズを調整
+              width: 100,
+            ),
+            const SizedBox(height: 16),
             const Text('This is a sample dialog to demonstrate the theme.'),
+          ],
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),

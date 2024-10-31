@@ -128,4 +128,6 @@ lib/theme/themes.dart
   * https://colorhunt.co/palette/c4e1f6feee91ffbd73ff9d3d
 * フリー画像
   * https://undraw.co/illustrations
+* アニメーション系
+  * https://lottiefiles.com/popular-free-animations
 
