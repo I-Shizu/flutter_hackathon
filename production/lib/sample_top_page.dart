@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:production/feature/sample_cloudstorage/sample_cloud_storage_view.dart';
 import 'package:production/feature/sample_firestore/sample_list_view.dart';
@@ -21,6 +22,11 @@ class SampleTopPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _playSound() async {
+    final player = AudioPlayer();
+    await player.play(AssetSource('sounds/samplesound.mp3'));
   }
 
   @override
@@ -89,8 +95,8 @@ class SampleTopPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+        onPressed: _playSound,
+        child: const Icon(Icons.music_note),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
