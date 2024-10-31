@@ -1,22 +1,31 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:practice/providers.dart';
+import 'package:practice/repository/post_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'post_repository.dart';
-import 'post_model.dart';
+import 'package:practice/model/post_model.dart';
 
 part 'post_view_model.g.dart';
 
 @riverpod
 class PostViewModelNotifier extends _$PostViewModelNotifier {
-  final PostRepository _repository = PostRepository();
+  late final PostRepository _repository;
 
   @override
   List<Post> build() {
-    // 初期値を設定（今回は空のリスト）
+    // PostRepository の初期化
+    _repository = ref.read(postRepositoryProvider);
+    // 初期状態は空のリスト
     return [];
   }
 
-  Future<void> addPost(
-      String userName, String snackName, String comments, int rating) async {
+  Future<void> fetchPosts() async {
+    // Firestore から投稿を取得
+    final posts = await _repository.fetchPosts();
+    // ステートを更新
+    state = posts;
+  }
+
+  Future<void> addPost(String userName, String snackName, String comments, int rating) async {
     final post = Post(
       userName: userName,
       createdAt: DateTime.now(),
@@ -25,8 +34,8 @@ class PostViewModelNotifier extends _$PostViewModelNotifier {
       rating: rating,
     );
 
-    // Repositoryを使用してFirestoreに投稿を追加
-    await _repository.addPost(post: post);
+    // Firestore に投稿を追加
+    await _repository.addPost(post);
 
     // ステートを更新
     state = [...state, post];

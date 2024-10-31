@@ -10,7 +10,7 @@ class Post with _$Post {
     required DateTime createdAt,
     required String snackName,
     required String comments,
-    @JsonKey(name: '5star-rating') required int rating,
+    required int rating,
   }) = _Post;
 
   factory Post.fromJson(Map<String, dynamic> json) => _$PostFromJson(json);

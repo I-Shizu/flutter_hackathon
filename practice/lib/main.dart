@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:practice/post/post_view.dart';
+import 'package:practice/top/top_view.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -20,11 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Snack Review App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // PostScreenをトップ画面に設定
-      home: PostScreen(),
+      home: TopScreen(),
     );
   }
 }
