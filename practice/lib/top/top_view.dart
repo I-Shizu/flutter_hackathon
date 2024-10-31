@@ -17,7 +17,7 @@ class TopScreen extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Spacer(),
-            Text('お菓子投稿'),
+            Text('お菓子一覧'),
             Spacer(),
             Icon(Icons.settings),
           ],

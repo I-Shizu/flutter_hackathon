@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:practice/post/post_view.dart';
 import 'package:practice/providers.dart';
+import 'package:practice/theme/themes.dart';
 import 'package:practice/top/top_view.dart';
 import 'firebase_options.dart';
 
@@ -20,12 +21,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Snack Review App',
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
       // PostScreenをトップ画面に設定
-      home: BottomNavigator(),
+      home: const BottomNavigator(),
     );
   }
 }
@@ -37,8 +34,9 @@ class BottomNavigator extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     final selectedIndex = ref.watch(bottomNavigationIndexProvider);
 
+    //画面数が増えた時はここに追加するだけでOK
     List<Widget> _pages = <Widget>[
-      TopScreen(),
+      const TopScreen(),
       PostScreen(),
     ];
 
@@ -47,13 +45,15 @@ class BottomNavigator extends ConsumerWidget {
       body: _pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.add_box_outlined), label: 'post'),
+          const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          const BottomNavigationBarItem(icon: Icon(Icons.add_box_outlined), label: 'post'),
         ],
         currentIndex: selectedIndex,
         onTap: (index) {
           ref.read(bottomNavigationIndexProvider.notifier).state = index;
         },
+        backgroundColor: AppColors.primary,
+        unselectedItemColor: AppColors.primaryContainer,
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:practice/post/post_view_model.dart';
+import 'package:practice/theme/themes.dart';
 
 class PostScreen extends ConsumerWidget {
   final TextEditingController _snackNameController = TextEditingController();
@@ -13,7 +14,17 @@ class PostScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Post a Review'),
+        title: const Text('お菓子を投稿'),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.primary,
+                AppColors.primaryContainer,
+              ],
+            ),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
