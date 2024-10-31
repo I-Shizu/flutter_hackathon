@@ -13,3 +13,6 @@ final topViewModelProvider = StateNotifierProvider<TopViewModel, TopViewState>((
   final postRepository = ref.watch(postRepositoryProvider);
   return TopViewModel(postRepository);
 });
+
+//bottomNavigationBarのプロバイダー
+final bottomNavigationIndexProvider = StateProvider<int>((ref) => 0);
