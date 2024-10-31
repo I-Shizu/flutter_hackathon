@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:practice/post/post_view.dart';
 import 'package:practice/providers.dart';
+import 'package:practice/theme/themes.dart';
 
 class TopScreen extends ConsumerWidget {
   const TopScreen({Key? key}) : super(key: key);
@@ -20,7 +21,19 @@ class TopScreen extends ConsumerWidget {
             Spacer(),
             Icon(Icons.settings),
           ],
-        )
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.primary,
+                AppColors.primaryContainer,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
       ),
       body: viewState.when(
         initial: () => const Center(child: Text('No posts yet.')),
