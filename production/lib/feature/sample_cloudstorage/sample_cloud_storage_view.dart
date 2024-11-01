@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'sample_cloud_storage_view_model.dart';
 import 'dart:io';
@@ -8,37 +9,29 @@ import 'dart:io';
 class SampleCloudStorageView extends ConsumerWidget {
   const SampleCloudStorageView({Key? key}) : super(key: key);
 
-  /// アセット画像を一時ファイルとして保存し、そのファイルパスを返す
-  Future<String> _getLocalFilePathFromAsset(String assetPath) async {
-    // アセットファイルをバイトデータとして読み込み
-    final byteData = await rootBundle.load(assetPath);
-
-    // 一時ディレクトリを取得
-    final tempDir = await getTemporaryDirectory();
-    final tempFilePath = '${tempDir.path}/temp_image.png';
-
-    // 一時ファイルとして保存
-    final file = File(tempFilePath);
-    await file.writeAsBytes(byteData.buffer.asUint8List());
-
-    return tempFilePath;
-  }
-
-  /// アセット画像をCloud Storageにアップロード
-  Future<void> _uploadAssetImage(WidgetRef ref) async {
-    // アセット画像パス
-    String assetPath = 'assets/images/flutter_logo.png';
-
-    // アセットを一時ファイルに保存し、そのパスを取得
-    String localFilePath = await _getLocalFilePathFromAsset(assetPath);
-
+  /// 画像をCloud Storageにアップロード
+  Future<void> _uploadImage(WidgetRef ref, File imageFile) async {
     // Cloud Storageの保存先パス
-    String destination = 'uploads/flutter_logo.png';
+    String destination = 'uploads/${imageFile.path.split('/').last}';
 
     // アップロードを実行
     await ref
         .read(sampleCloudStorageViewModelProvider.notifier)
-        .uploadFile(localFilePath, destination);
+        .uploadFile(imageFile.path, destination);
+  }
+
+  /// 画像を選択してアップロード
+  Future<void> _pickAndUploadImage(WidgetRef ref) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      // 選択した画像ファイルをFileとして取得
+      final imageFile = File(pickedFile.path);
+
+      // アップロードを実行
+      await _uploadImage(ref, imageFile);
+    }
   }
 
   @override
@@ -54,13 +47,19 @@ class SampleCloudStorageView extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              onPressed: () => _uploadAssetImage(ref),
-              child: const Text('Upload Flutter Logo'),
+              onPressed: () => _pickAndUploadImage(ref),
+              child: const Text('Pick & Upload Image'),
             ),
             if (viewModel is AsyncData && viewModel.value != null) ...[
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text('Uploaded File URL: ${viewModel.value}'),
+              ),
+              Image.network(
+                viewModel.value!,
+                height: 200,
+                width: 200,
+                fit: BoxFit.cover,
               ),
             ],
             if (viewModel is AsyncError) ...[
