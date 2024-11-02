@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:production/constants/strings.dart';
 import 'package:production/feature/regist_profile/regist_my_experience_view.dart';
-import 'package:production/feature/regist_profile/regist_profile_view_model.dart';
+import 'package:production/feature/regist_profile/register_profile_view_model.dart';
 import 'package:production/feature/register_profile/register_profile_view.dart';
 
 class RegisterNameView extends ConsumerStatefulWidget {
@@ -12,7 +13,9 @@ class RegisterNameView extends ConsumerStatefulWidget {
 class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController teamNameController = TextEditingController();
-  late RegistProfileViewModel registProfileNotifier;
+  // late RegistProfileViewModel registProfileNotifier;
+  final RegisterProfileViewModel registerProfileViewModel =
+      RegisterProfileViewModel();
   int? selectedIconIndex; // 選択されたアイコンのインデックス
 
   // 入力されていない項目を取得
@@ -47,7 +50,8 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    registProfileNotifier = ref.read(registProfileViewModelProvider.notifier);
+    registerProfileViewModel.setRef(ref);
+    //registProfileNotifier = ref.read(registProfileViewModelProvider.notifier);
   }
 
   @override
@@ -143,9 +147,11 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
                 onPressed: () {
                   final incompleteFields = _getIncompleteFields();
                   if (incompleteFields.isEmpty) {
-                    registProfileNotifier.saveName(nameController.text);
-                    registProfileNotifier.saveTeamName(teamNameController.text);
-                    registProfileNotifier.saveIcon(selectedIconIndex!);
+                    registerProfileViewModel.saveUserId(returnUuidV4());
+                    registerProfileViewModel.saveName(nameController.text);
+                    registerProfileViewModel
+                        .saveTeamName(teamNameController.text);
+                    registerProfileViewModel.saveIcon(selectedIconIndex!);
                     // フォームが完了している場合、完了メッセージをダイアログで表示
                     _showDialog('成功！', '完了しました。');
                     Navigator.pushReplacement(
