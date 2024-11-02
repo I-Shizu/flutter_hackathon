@@ -14,45 +14,49 @@ class ProfileView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text("プロフィール")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: 50,
-              backgroundColor: Colors.grey[300],
-              child: ClipOval(
-                child: Image.asset(
-                  iconPath,
-                  width: 100, // CircleAvatarのサイズに合わせて調整
-                  height: 100,
-                  fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 16),
+              CircleAvatar(
+                radius: 50,
+                backgroundColor: Colors.grey[300],
+                child: ClipOval(
+                  child: Image.asset(
+                    iconPath,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 8),
-            Text(
-              otherUser.teamName,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Text(otherUser.name, style: TextStyle(fontSize: 16)),
-            SizedBox(height: 4),
-            // Lottieアニメーションの追加
-            Lottie.asset(
-              otherUser.totalpoint != null && otherUser.totalpoint! >= 80
-                  ? 'assets/lottie/morehot_animation.json'
-                  : 'assets/lottie/hot_animation.json',
-              width: 60, // サイズを調整
-              height: 60,
-            ),
-            SizedBox(height: 16),
-            _ProfileCard(label: '経験: ${otherUser.profileExperience}'),
-            _ProfileCard(label: '職業: ${otherUser.profileJob}'),
-            _ProfileCard(label: '好きなパッケージ: ${otherUser.profileFavPackage}'),
-            _ProfileCard(label: '趣味: ${otherUser.profileHobbies.join(', ')}'),
-            _ProfileCard(label: '特徴: ${otherUser.profilePersonFeat}'),
-            _ProfileCard(label: 'ホット度: ${otherUser.totalpoint.toString()}'),
-          ],
+              SizedBox(height: 8),
+              Text(
+                otherUser.teamName,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              Text(otherUser.name, style: TextStyle(fontSize: 16)),
+              SizedBox(height: 4),
+              // Lottie animation
+              Lottie.asset(
+                otherUser.totalpoint != null && otherUser.totalpoint! >= 80
+                    ? 'assets/lottie/morehot_animation.json'
+                    : 'assets/lottie/hot_animation.json',
+                width: 60,
+                height: 60,
+              ),
+              SizedBox(height: 16),
+              _ProfileCard(label: '経験: ${otherUser.profileExperience}'),
+              _ProfileCard(label: '職業: ${otherUser.profileJob}'),
+              _ProfileCard(label: '好きなパッケージ: ${otherUser.profileFavPackage}'),
+              _ProfileCard(label: '趣味: ${otherUser.profileHobbies.join(', ')}'),
+              _ProfileCard(label: '特徴: ${otherUser.profilePersonFeat}'),
+              _ProfileCard(label: 'ホット度: ${otherUser.totalpoint.toString()}'),
+              SizedBox(height: 16),
+            ],
+          ),
         ),
       ),
     );
@@ -70,27 +74,35 @@ class _ProfileCard extends StatelessWidget {
     final title = parts[0];
     final value = parts.length > 1 ? parts[1] : '';
 
-    return Container(
-      width: double.infinity,
-      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
-      padding: EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.grey[300],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: RichText(
-        textAlign: TextAlign.start,
-        text: TextSpan(
-          style: TextStyle(fontSize: 16, color: Colors.black),
-          children: [
-            TextSpan(text: '$title: '),
-            TextSpan(
-              text: value,
-              style: TextStyle(fontWeight: FontWeight.bold),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Limit the max width for larger screens
+        double cardWidth =
+            constraints.maxWidth > 600 ? 600 : constraints.maxWidth;
+
+        return Container(
+          width: cardWidth,
+          margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 32.0),
+          padding: EdgeInsets.all(16.0),
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: RichText(
+            textAlign: TextAlign.start,
+            text: TextSpan(
+              style: TextStyle(fontSize: 16, color: Colors.black),
+              children: [
+                TextSpan(text: '$title: '),
+                TextSpan(
+                  text: value,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
