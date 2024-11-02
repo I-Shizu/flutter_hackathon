@@ -326,9 +326,9 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                                     TextSpan(
                                         text:
                                             '共通の趣味: ${commonHobbies.join(', ')}\n'),
-                                  if (commonFavPackage != null)
-                                    TextSpan(
-                                        text: '共通のパッケージ: $commonFavPackage\n'),
+                                  // if (commonFavPackage != null)
+                                  //   TextSpan(
+                                  //       text: '共通のパッケージ: $commonFavPackage\n'),
                                   if (commonExperience != null)
                                     TextSpan(
                                         text: '共通の経験: $commonExperience\n'),

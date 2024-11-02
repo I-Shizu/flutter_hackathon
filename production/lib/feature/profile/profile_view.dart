@@ -50,7 +50,7 @@ class ProfileView extends StatelessWidget {
               SizedBox(height: 16),
               _ProfileCard(label: '経験: ${otherUser.profileExperience}'),
               _ProfileCard(label: '職業: ${otherUser.profileJob}'),
-              _ProfileCard(label: '好きなパッケージ: ${otherUser.profileFavPackage}'),
+              // _ProfileCard(label: '好きなパッケージ: ${otherUser.profileFavPackage}'),
               _ProfileCard(label: '趣味: ${otherUser.profileHobbies.join(', ')}'),
               _ProfileCard(label: '特徴: ${otherUser.profilePersonFeat}'),
               _ProfileCard(label: 'ホット度: ${otherUser.totalpoint.toString()}'),
