@@ -43,22 +43,32 @@ class ProfileRegisterViewComponent extends HookConsumerWidget {
           children: [
             Text(
               profileTitle,
-              style: const TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
-            ListView.builder(
+            const SizedBox(height: 24),
+            ListView.separated(
+              separatorBuilder: (context, index) => const SizedBox(
+                height: 12,
+              ),
               padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(btnTextList[index]),
+                  // contentPadding: EdgeInsets.zero,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  title: Text(btnTextList[index],
+                      style: const TextStyle(
+                        fontSize: 16,
+                      )),
                   onTap: () {
                     selectedIndex.value = index;
                   },
                   selected: selectedIndex.value == index,
-                  selectedColor: Colors.orange,
+                  selectedTileColor: Colors.orange.withOpacity(0.2),
+                  tileColor: Colors.grey.withOpacity(0.1),
                 );
               },
               itemCount: btnTextList.length,
@@ -68,6 +78,7 @@ class ProfileRegisterViewComponent extends HookConsumerWidget {
             ),
             Center(
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(fixedSize: const Size(280, 48)),
                 onPressed: () {
                   if (selectedIndex.value != null) {
                     //riverpodにselectedIndexを渡す。最後の処理だった場合、firestoreに登録する機能も実装する。
@@ -77,8 +88,9 @@ class ProfileRegisterViewComponent extends HookConsumerWidget {
                     Fluttertoast.showToast(msg: '回答を選択してください');
                   }
                 },
-                child:
-                    isProfileSubmitBtn ? const Text('登録完了') : const Text('次へ'),
+                child: Text(isProfileSubmitBtn ? '登録完了' : '次へ',
+                    style: const TextStyle(fontSize: 16)),
+                //  const Text('登録完了') : const Text('次へ'),
               ),
             ),
           ],
