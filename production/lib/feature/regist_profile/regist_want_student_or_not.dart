@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:production/components/profile_register_view_component.dart';
+import 'package:production/constants/lists.dart';
+import 'package:production/feature/regist_profile/register_profile_view_model.dart';
 
 class RegistWantStudentOrNotView extends StatelessWidget {
   const RegistWantStudentOrNotView({super.key});
@@ -10,11 +13,17 @@ class RegistWantStudentOrNotView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ProfileRegisterViewComponent(
       profileTitle: '学生or社会人',
-      btnTextList: btnTextList,
+      btnTextList: studentOrWorkingList,
       appBarTitle: '繋がりたい人の情報',
       isProfileSubmitBtn: true,
-      onPressed: (int selectedIndex) {
-        //TODO ViewModelでriverpodに値を渡す処理を行う。
+      onPressed: (
+        int selectedIndex,
+        RegisterProfileViewModel registerProfileViewModel,
+      ) async {
+        registerProfileViewModel
+            .saveAskIsStudent(studentOrWorkingList[selectedIndex] == '学生');
+        await registerProfileViewModel.sendMyData();
+        // print('myProfile: ${registerProfileViewModel.myProfile}');
       },
     );
   }
