@@ -85,4 +85,8 @@ class RegisterProfileViewModel {
   Future<void> sendMyData() async {
     await _userDataRepository.sendMyData(myUserData: myProfile);
   }
+
+  MyUserModel getProfile() {
+    return _ref.read(myProfileProvider);
+  }
 }

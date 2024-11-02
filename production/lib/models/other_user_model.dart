@@ -19,7 +19,8 @@ class OtherUserModel with _$OtherUserModel {
     required String askExperience,
     required String askJob,
     required bool askIsStudent,
-    required double totalpoint,
+    @JsonKey(includeFromJson: false, includeToJson: false)
+    double? totalpoint, // Firestoreには含まれない
   }) = _OtherUserModel;
 
   factory OtherUserModel.fromJson(Map<String, dynamic> json) =>

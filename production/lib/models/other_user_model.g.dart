@@ -23,7 +23,6 @@ _$OtherUserModelImpl _$$OtherUserModelImplFromJson(Map<String, dynamic> json) =>
       askExperience: json['askExperience'] as String,
       askJob: json['askJob'] as String,
       askIsStudent: json['askIsStudent'] as bool,
-      totalpoint: (json['totalpoint'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$OtherUserModelImplToJson(
@@ -42,5 +41,4 @@ Map<String, dynamic> _$$OtherUserModelImplToJson(
       'askExperience': instance.askExperience,
       'askJob': instance.askJob,
       'askIsStudent': instance.askIsStudent,
-      'totalpoint': instance.totalpoint,
     };
