@@ -71,7 +71,7 @@ class ProfileRegisterViewComponent extends HookConsumerWidget {
                   }
                 },
                 child:
-                    isProfileSubmitBtn ? const Text('次へ') : const Text('登録する'),
+                    isProfileSubmitBtn ? const Text('登録完了') : const Text('次へ'),
               ),
             ),
           ],
