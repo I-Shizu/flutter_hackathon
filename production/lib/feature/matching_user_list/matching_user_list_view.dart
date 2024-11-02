@@ -6,7 +6,6 @@ import 'package:production/feature/regist_profile/register_profile_view_model.da
 import 'package:production/models/other_user_model.dart';
 import 'package:production/models/my_user_model.dart';
 import 'matching_user_list_view_model.dart';
-import 'package:production/feature/matching_user_list/my_user_provider.dart';
 
 class MatchingUserListView extends ConsumerStatefulWidget {
   @override
