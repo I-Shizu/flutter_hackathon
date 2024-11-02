@@ -27,7 +27,7 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Matching User List'),
+        title: Text('ホットな参加メンバー'),
       ),
       body: usersAsyncValue.when(
         loading: () => Center(child: CircularProgressIndicator()),
