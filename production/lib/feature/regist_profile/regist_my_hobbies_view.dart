@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:production/feature/regist_profile/progress_indicator_widget.dart';
+import 'package:production/feature/regist_profile/progress_provider.dart';
 import 'package:production/feature/regist_profile/regist_want_experience_view.dart';
 import 'package:production/feature/regist_profile/register_profile_view_model.dart';
 
@@ -26,6 +28,7 @@ class RegistMyHobbiesView extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const ProgressIndicatorWidget(), // 進捗バーのウィジェットを追加
               const Text(
                 'hotなハマっていること\n（改行で区切って3つまで登録可能)',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -87,6 +90,9 @@ class RegistMyHobbiesView extends ConsumerWidget {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
                       if (context.mounted) {
+                        ref
+                            .read(currentStepProvider.notifier)
+                            .update((state) => state + 1);
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
