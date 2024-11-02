@@ -33,7 +33,8 @@ mixin _$OtherUserModel {
   String get askExperience => throw _privateConstructorUsedError;
   String get askJob => throw _privateConstructorUsedError;
   bool get askIsStudent => throw _privateConstructorUsedError;
-  double get totalpoint => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  double? get totalpoint => throw _privateConstructorUsedError;
 
   /// Serializes this OtherUserModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -65,7 +66,8 @@ abstract class $OtherUserModelCopyWith<$Res> {
       String askExperience,
       String askJob,
       bool askIsStudent,
-      double totalpoint});
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      double? totalpoint});
 }
 
 /// @nodoc
@@ -96,7 +98,7 @@ class _$OtherUserModelCopyWithImpl<$Res, $Val extends OtherUserModel>
     Object? askExperience = null,
     Object? askJob = null,
     Object? askIsStudent = null,
-    Object? totalpoint = null,
+    Object? totalpoint = freezed,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -151,10 +153,10 @@ class _$OtherUserModelCopyWithImpl<$Res, $Val extends OtherUserModel>
           ? _value.askIsStudent
           : askIsStudent // ignore: cast_nullable_to_non_nullable
               as bool,
-      totalpoint: null == totalpoint
+      totalpoint: freezed == totalpoint
           ? _value.totalpoint
           : totalpoint // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ) as $Val);
   }
 }
@@ -181,7 +183,8 @@ abstract class _$$OtherUserModelImplCopyWith<$Res>
       String askExperience,
       String askJob,
       bool askIsStudent,
-      double totalpoint});
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      double? totalpoint});
 }
 
 /// @nodoc
@@ -210,7 +213,7 @@ class __$$OtherUserModelImplCopyWithImpl<$Res>
     Object? askExperience = null,
     Object? askJob = null,
     Object? askIsStudent = null,
-    Object? totalpoint = null,
+    Object? totalpoint = freezed,
   }) {
     return _then(_$OtherUserModelImpl(
       userId: null == userId
@@ -265,10 +268,10 @@ class __$$OtherUserModelImplCopyWithImpl<$Res>
           ? _value.askIsStudent
           : askIsStudent // ignore: cast_nullable_to_non_nullable
               as bool,
-      totalpoint: null == totalpoint
+      totalpoint: freezed == totalpoint
           ? _value.totalpoint
           : totalpoint // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
     ));
   }
 }
@@ -290,7 +293,7 @@ class _$OtherUserModelImpl implements _OtherUserModel {
       required this.askExperience,
       required this.askJob,
       required this.askIsStudent,
-      required this.totalpoint})
+      @JsonKey(includeFromJson: false, includeToJson: false) this.totalpoint})
       : _profileHobbies = profileHobbies;
 
   factory _$OtherUserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -329,7 +332,8 @@ class _$OtherUserModelImpl implements _OtherUserModel {
   @override
   final bool askIsStudent;
   @override
-  final double totalpoint;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final double? totalpoint;
 
   @override
   String toString() {
@@ -418,7 +422,8 @@ abstract class _OtherUserModel implements OtherUserModel {
       required final String askExperience,
       required final String askJob,
       required final bool askIsStudent,
-      required final double totalpoint}) = _$OtherUserModelImpl;
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final double? totalpoint}) = _$OtherUserModelImpl;
 
   factory _OtherUserModel.fromJson(Map<String, dynamic> json) =
       _$OtherUserModelImpl.fromJson;
@@ -450,7 +455,8 @@ abstract class _OtherUserModel implements OtherUserModel {
   @override
   bool get askIsStudent;
   @override
-  double get totalpoint;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  double? get totalpoint;
 
   /// Create a copy of OtherUserModel
   /// with the given fields replaced by the non-null parameter values.
