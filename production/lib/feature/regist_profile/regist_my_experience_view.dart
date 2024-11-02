@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:production/components/profile_register_view_component.dart';
 import 'package:production/constants/lists.dart';
@@ -6,6 +7,11 @@ import 'package:production/feature/regist_profile/register_profile_view_model.da
 
 class RegistMyExperienceView extends StatelessWidget {
   const RegistMyExperienceView({super.key});
+
+  Future<void> _playSound() async {
+    final player = AudioPlayer();
+    await player.play(AssetSource('sounds/next_btn.mp3'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,8 @@ class RegistMyExperienceView extends StatelessWidget {
         int selectedIndex,
         RegisterProfileViewModel registerProfileViewModel,
       ) {
-        //ViewModelでriverpodに値を渡す処理を行う。
+        _playSound();
+        // ViewModelでriverpodに値を渡す処理を行う。
         registerProfileViewModel
             .saveProfileExperience(experienceList[selectedIndex]);
         Navigator.pushReplacement(
