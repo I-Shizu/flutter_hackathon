@@ -292,7 +292,7 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                             width: 40,
                             height: 40,
                             child: Lottie.asset(
-                              user.totalpoint != null && user.totalpoint! >= 80
+                              user.totalpoint != null && user.totalpoint! >= 100
                                   ? 'assets/lottie/morehot_animation.json'
                                   : 'assets/lottie/hot_animation.json',
                             ),

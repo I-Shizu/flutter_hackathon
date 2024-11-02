@@ -41,7 +41,7 @@ class ProfileView extends StatelessWidget {
               SizedBox(height: 4),
               // Lottie animation
               Lottie.asset(
-                otherUser.totalpoint != null && otherUser.totalpoint! >= 80
+                otherUser.totalpoint != null && otherUser.totalpoint! >= 100
                     ? 'assets/lottie/morehot_animation.json'
                     : 'assets/lottie/hot_animation.json',
                 width: 60,
