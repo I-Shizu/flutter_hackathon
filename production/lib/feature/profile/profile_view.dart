@@ -50,6 +50,9 @@ class ProfileView extends StatelessWidget {
               SizedBox(height: 16),
               _ProfileCard(label: '経験: ${otherUser.profileExperience}'),
               _ProfileCard(label: '職業: ${otherUser.profileJob}'),
+              _ProfileCard(
+                label: '学生/社会人: ${otherUser.profileIsStudent ? '学生' : '社会人'}',
+              ),
               // _ProfileCard(label: '好きなパッケージ: ${otherUser.profileFavPackage}'),
               _ProfileCard(label: '趣味: ${otherUser.profileHobbies.join(', ')}'),
               _ProfileCard(label: '特徴: ${otherUser.profilePersonFeat}'),
