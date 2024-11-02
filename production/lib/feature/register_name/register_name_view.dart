@@ -19,10 +19,10 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
 
   // 仮のチーム名リスト
   final List<String> teamNames = [
-    'チームA', 'チームB', 'チームC', 'チームD',
-    'チームE', 'チームF', 'チームG', 'チームH',
-    'チームI', 'チームJ', 'チームK', 'チームL',
-    'チームM', 'チームN', 'チームO', 'チームP'
+    'チームごった煮', '&AIハッカソン部大阪チーム', 'FukuokaFlutterFanclub', '&AIハッカソン部東京チーム',
+    'origin master', 'PlayGround', 'ほぼドコドア', 'チームプラゴ',
+    'Diamond', 'アジャイルビギナーズリターンズ', 'ながたま', 'windy',
+    'マリディ', 'UI=F(State)', 'TK-Studio', 'BEENgineer'
   ];
 
   // 入力されていない項目を取得
