@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:production/feature/regist_profile/progress_indicator_widget.dart';
+import 'package:production/feature/regist_profile/progress_provider.dart';
 import 'package:production/feature/regist_profile/register_profile_view_model.dart';
 import 'package:production/feature/register_profile/register_profile_view.dart';
 
@@ -41,6 +43,7 @@ class ProfileRegisterViewComponent extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const ProgressIndicatorWidget(), // 進捗バーのウィジェットを追加
             Text(
               profileTitle,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -81,6 +84,9 @@ class ProfileRegisterViewComponent extends HookConsumerWidget {
                 style: ElevatedButton.styleFrom(fixedSize: const Size(280, 48)),
                 onPressed: () {
                   if (selectedIndex.value != null) {
+                    ref
+                        .read(currentStepProvider.notifier)
+                        .update((state) => state + 1);
                     //riverpodにselectedIndexを渡す。最後の処理だった場合、firestoreに登録する機能も実装する。
                     onPressed(selectedIndex.value!, registerProfileViewModel);
                   } else {
