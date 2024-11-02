@@ -122,6 +122,8 @@ lib/theme/themes.dart
   * https://docs.google.com/document/d/1ky1BH8u6BeQuKaUb1gbCuuIs9TKuwS-QPEhCeLxGo1U/edit?tab=t.0
 * スプレッドシート（設計などする時用
   * https://docs.google.com/spreadsheets/d/1iDPhG5hca7JvYjNhuLV0pkD7dDn_B653Utck_osoCNE/edit?gid=0#gid=0
+* 発表スライド
+  * https://www.canva.com/design/DAGVSOf89ms/UraVLWJlDWLynCdjLssy3w/edit?utm_content=DAGVSOf89ms&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ### デザイン関連ツール
 * カラー選択
