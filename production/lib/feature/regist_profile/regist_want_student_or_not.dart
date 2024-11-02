@@ -16,11 +16,14 @@ class RegistWantStudentOrNotView extends StatelessWidget {
       btnTextList: studentOrWorkingList,
       appBarTitle: '繋がりたい人の情報',
       isProfileSubmitBtn: true,
-      onPressed: (int selectedIndex,
-          RegisterProfileViewModel registerProfileViewModel) {
+      onPressed: (
+        int selectedIndex,
+        RegisterProfileViewModel registerProfileViewModel,
+      ) async {
         registerProfileViewModel
             .saveAskIsStudent(studentOrWorkingList[selectedIndex] == '学生');
-        print('myProfile: ${registerProfileViewModel.myProfile}');
+        await registerProfileViewModel.sendMyData();
+        // print('myProfile: ${registerProfileViewModel.myProfile}');
       },
     );
   }

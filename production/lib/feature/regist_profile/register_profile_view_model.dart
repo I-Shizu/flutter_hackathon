@@ -1,9 +1,11 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:production/models/my_user_model.dart';
 import 'package:production/providers/profile_provider.dart';
+import 'package:production/repositories/user_data_repository.dart';
 
 class RegisterProfileViewModel {
   late WidgetRef _ref;
+  final UserDataRepository _userDataRepository = UserDataRepository();
 
   void setRef(WidgetRef ref) {
     _ref = ref;
@@ -78,5 +80,9 @@ class RegisterProfileViewModel {
   void saveAskIsStudent(bool askIsStudent) {
     _ref.read(myProfileProvider.notifier).state =
         _ref.read(myProfileProvider).copyWith(askIsStudent: askIsStudent);
+  }
+
+  Future<void> sendMyData() async {
+    await _userDataRepository.sendMyData(myUserData: myProfile);
   }
 }
