@@ -101,32 +101,32 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                         }).toList(),
                       ),
                       SizedBox(width: 8),
-                      ChoiceChip(
-                        label: Text(selectedIsStudent == true ? '学生' : '非学生'),
-                        selected: selectedIsStudent != null,
-                        onSelected: (isSelected) {
-                          setState(() {
-                            selectedIsStudent =
-                                isSelected ? !selectedIsStudent! : null;
-                          });
-                        },
-                      ),
-                      SizedBox(width: 8),
-                      Wrap(
-                        spacing: 8,
-                        children: favPackageOptions.map((package) {
-                          return ChoiceChip(
-                            label: Text(package),
-                            selected: selectedFavPackage == package,
-                            onSelected: (isSelected) {
-                              setState(() {
-                                selectedFavPackage =
-                                    isSelected ? package : null;
-                              });
-                            },
-                          );
-                        }).toList(),
-                      ),
+                      // ChoiceChip(
+                      //   label: Text(selectedIsStudent == true ? '学生' : '非学生'),
+                      //   selected: selectedIsStudent != null,
+                      //   onSelected: (isSelected) {
+                      //     setState(() {
+                      //       selectedIsStudent =
+                      //           selectedIsStudent == true ? false : true;
+                      //     });
+                      //   },
+                      // ),
+                      // SizedBox(width: 8),
+                      // Wrap(
+                      //   spacing: 8,
+                      //   children: favPackageOptions.map((package) {
+                      //     return ChoiceChip(
+                      //       label: Text(package),
+                      //       selected: selectedFavPackage == package,
+                      //       onSelected: (isSelected) {
+                      //         setState(() {
+                      //           selectedFavPackage =
+                      //               isSelected ? package : null;
+                      //         });
+                      //       },
+                      //     );
+                      //   }).toList(),
+                      // ),
                       SizedBox(width: 8),
                       Wrap(
                         spacing: 8,
