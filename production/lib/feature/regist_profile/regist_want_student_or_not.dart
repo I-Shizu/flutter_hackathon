@@ -12,7 +12,7 @@ class RegistWantStudentOrNotView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProfileRegisterViewComponent(
-      profileTitle: '学生or社会人',
+      profileTitle: '(繋がりたい人が)学生or社会人',
       btnTextList: studentOrWorkingList,
       appBarTitle: '繋がりたい人の情報',
       isProfileSubmitBtn: true,
