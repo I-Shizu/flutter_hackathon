@@ -11,7 +11,7 @@ class RegistWantJobView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProfileRegisterViewComponent(
-      profileTitle: '職業',
+      profileTitle: '(繋がりたい人の)職業',
       btnTextList: jobList,
       appBarTitle: '繋がりたい人の情報',
       isProfileSubmitBtn: false,

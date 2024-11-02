@@ -11,7 +11,7 @@ class RegistWantExperienceView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ProfileRegisterViewComponent(
-      profileTitle: 'Flutterエンジニアとしての経験',
+      profileTitle: '(繋がりたい人の)Flutterエンジニアとしての経験',
       btnTextList: experienceList,
       appBarTitle: '繋がりたい人の情報',
       isProfileSubmitBtn: false,
