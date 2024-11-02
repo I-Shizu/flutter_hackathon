@@ -13,7 +13,7 @@ class ProgressIndicatorWidget extends ConsumerWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(4.0),
           child: LinearProgressIndicator(
             value: currentStep / totalSteps,
             backgroundColor: Colors.grey[300],
@@ -21,6 +21,7 @@ class ProgressIndicatorWidget extends ConsumerWidget {
           ),
         ),
         Text('$currentStep / $totalSteps ステップ'),
+        const SizedBox(height: 16),
       ],
     );
   }
