@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:production/feature/profile/profile_view.dart';
+import 'package:production/feature/regist_profile/register_profile_view_model.dart';
 import 'package:production/models/other_user_model.dart';
 import 'package:production/models/my_user_model.dart';
 import 'matching_user_list_view_model.dart';
@@ -20,10 +21,22 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
   String? selectedPersonFeat;
   List<String> selectedHobbies = [];
 
+  final RegisterProfileViewModel registerProfileViewModel =
+      RegisterProfileViewModel();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    registerProfileViewModel.setRef(ref);
+    //registProfileNotifier = ref.read(registProfileViewModelProvider.notifier);
+  }
+
   @override
   Widget build(BuildContext context) {
     final usersAsyncValue = ref.watch(matchingUserListViewModelProvider);
-    final myUser = ref.watch(myUserProvider);
+    // final myUser = ref.watch(myUserProvider);
+    final myUser = registerProfileViewModel.myProfile;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,15 +46,20 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
         loading: () => Center(child: CircularProgressIndicator()),
         error: (error, stack) => Center(child: Text('Error: $error')),
         data: (users) {
+          // 自分の userId と異なるユーザーのみを表示するようにフィルタリング
+          final filteredUsers =
+              users.where((user) => user.userId != myUser.userId).toList();
+
           final experienceOptions =
-              users.map((u) => u.profileExperience).toSet().toList();
-          final jobOptions = users.map((u) => u.profileJob).toSet().toList();
+              filteredUsers.map((u) => u.profileExperience).toSet().toList();
+          final jobOptions =
+              filteredUsers.map((u) => u.profileJob).toSet().toList();
           final favPackageOptions =
-              users.map((u) => u.profileFavPackage).toSet().toList();
+              filteredUsers.map((u) => u.profileFavPackage).toSet().toList();
           final hobbiesOptions =
-              users.expand((u) => u.profileHobbies).toSet().toList();
+              filteredUsers.expand((u) => u.profileHobbies).toSet().toList();
           final personFeatOptions =
-              users.map((u) => u.profilePersonFeat).toSet().toList();
+              filteredUsers.map((u) => u.profilePersonFeat).toSet().toList();
 
           return Column(
             children: [
@@ -148,7 +166,7 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                 ),
               ),
               Expanded(
-                child: _buildFilteredUserGrid(users, myUser),
+                child: _buildFilteredUserGrid(filteredUsers, myUser),
               ),
             ],
           );
