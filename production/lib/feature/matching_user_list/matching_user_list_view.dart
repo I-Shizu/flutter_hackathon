@@ -265,14 +265,14 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  SizedBox(height: 2),
                   Text(
                     user.name,
                     style: TextStyle(
                       fontSize: 14,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -294,7 +294,7 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 4),
                   // 共通の要素を表示
                   if (commonHobbies.isNotEmpty ||
                       commonFavPackage != null ||
@@ -303,26 +303,25 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (commonHobbies.isNotEmpty)
-                          Text(
-                            '共通の趣味: ${commonHobbies.join(', ')}',
-                            style: TextStyle(fontSize: 12),
+                        RichText(
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          text: TextSpan(
+                            style: TextStyle(fontSize: 12, color: Colors.black),
+                            children: [
+                              if (commonHobbies.isNotEmpty)
+                                TextSpan(
+                                    text:
+                                        '共通の趣味: ${commonHobbies.join(', ')}\n'),
+                              if (commonFavPackage != null)
+                                TextSpan(text: '共通のパッケージ: $commonFavPackage\n'),
+                              if (commonExperience != null)
+                                TextSpan(text: '共通の経験: $commonExperience\n'),
+                              if (commonJob != null)
+                                TextSpan(text: '共通の職業: $commonJob'),
+                            ],
                           ),
-                        if (commonFavPackage != null)
-                          Text(
-                            '共通の好きなパッケージ: $commonFavPackage',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        if (commonExperience != null)
-                          Text(
-                            '共通の経験: $commonExperience',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        if (commonJob != null)
-                          Text(
-                            '共通の職業: $commonJob',
-                            style: TextStyle(fontSize: 12),
-                          ),
+                        ),
                       ],
                     ),
                 ],
