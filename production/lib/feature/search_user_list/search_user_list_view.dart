@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class UserListSearchView extends StatelessWidget {
+class SearchUserListView extends StatelessWidget {
   final List<String> tags = [
     "#アプリ運営", "#ストア申請", "#日常", "#開発", "#リーダーの本", "#UI", 
     "#打ち合わせ", "#映像制作", "#読書", "#仕事", "#プレゼン"

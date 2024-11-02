@@ -33,16 +33,31 @@ import 'package:flutter/material.dart';
 // }
 
 // 落ち着いた色合いのカラーパレットを定義するクラス
+// class AppColors {
+//   static const primary = Color(0xFF4E6E58); // 落ち着いた深いグリーン
+//   static const primaryContainer = Color(0xFFA5B8A8); // ソフトなミントグリーン
+//   static const secondary = Color(0xFF8D6E63); // シックなブラウン
+//   static const secondaryContainer = Color(0xFFD7CCC8); // ライトブラウン
+//   static const surface = Color(0xFFF5F5F5); // 明るいグレージュ
+//   static const background = Color(0xFFECE8E1); // 優しいクリームベージュ
+//   static const error = Color(0xFFD32F2F); // 控えめなレッド（エラー）
+//   static const onPrimary = Color(0xFFFFFFFF); // グリーン上での白
+//   static const onSecondary = Color(0xFFFFFFFF); // ブラウン上での白
+//   static const onSurface = Color(0xFF5D4037); // 深みのあるブラウン
+//   static const onBackground = Color(0xFF3E2723); // 背景上での深いブラウン
+//   static const onError = Color(0xFFFFFFFF); // エラーカラー上での白
+// }
+
 class AppColors {
-  static const primary = Color(0xFF4E6E58); // 落ち着いた深いグリーン
-  static const primaryContainer = Color(0xFFA5B8A8); // ソフトなミントグリーン
-  static const secondary = Color(0xFF8D6E63); // シックなブラウン
-  static const secondaryContainer = Color(0xFFD7CCC8); // ライトブラウン
+  static const primary = Color(0xFFC6E7FF); // 優しい水色
+  static const primaryContainer = Color(0xFFD4F6FF); // 明るいスカイブルー
+  static const secondary = Color(0xFFFBFBFB); // ソフトなホワイトグレイ
+  static const secondaryContainer = Color(0xFFFFDDAE); // 温かみのあるライトオレンジ
   static const surface = Color(0xFFF5F5F5); // 明るいグレージュ
   static const background = Color(0xFFECE8E1); // 優しいクリームベージュ
   static const error = Color(0xFFD32F2F); // 控えめなレッド（エラー）
-  static const onPrimary = Color(0xFFFFFFFF); // グリーン上での白
-  static const onSecondary = Color(0xFFFFFFFF); // ブラウン上での白
+  static const onPrimary = Color(0xFF4E6E58); // 水色上での落ち着いたグリーン
+  static const onSecondary = Color(0xFF8D6E63); // ホワイトグレイ上でのブラウン
   static const onSurface = Color(0xFF5D4037); // 深みのあるブラウン
   static const onBackground = Color(0xFF3E2723); // 背景上での深いブラウン
   static const onError = Color(0xFFFFFFFF); // エラーカラー上での白
