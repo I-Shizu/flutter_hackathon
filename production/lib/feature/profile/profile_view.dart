@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:production/models/other_user_model.dart';
 
 class ProfileView extends StatelessWidget {
@@ -12,7 +13,7 @@ class ProfileView extends StatelessWidget {
     final iconPath = 'assets/images/icon$iconNumber.png';
 
     return Scaffold(
-      appBar: AppBar(title: Text("相手のプロフィール")),
+      appBar: AppBar(title: Text("プロフィール")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,6 +36,15 @@ class ProfileView extends StatelessWidget {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             Text(otherUser.name, style: TextStyle(fontSize: 16)),
+            SizedBox(height: 4),
+            // Lottieアニメーションの追加
+            Lottie.asset(
+              otherUser.totalpoint != null && otherUser.totalpoint! >= 80
+                  ? 'assets/lottie/morehot_animation.json'
+                  : 'assets/lottie/hot_animation.json',
+              width: 60, // サイズを調整
+              height: 60,
+            ),
             SizedBox(height: 16),
             _ProfileCard(label: '経験: ${otherUser.profileExperience}'),
             _ProfileCard(label: '職業: ${otherUser.profileJob}'),
