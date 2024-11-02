@@ -27,11 +27,12 @@ class RegistWantStudentOrNotView extends StatelessWidget {
         // print('myProfile: ${registerProfileViewModel.myProfile}');
 
         // 遷移処理
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
-            builder: (context) => MatchingUserListView(), // 遷移先の画面
+            builder: (context) => MatchingUserListView(),
           ),
+          (Route<dynamic> route) => false,
         );
       },
     );
