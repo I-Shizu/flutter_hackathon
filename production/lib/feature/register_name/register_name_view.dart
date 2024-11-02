@@ -1,6 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class RegisterNameView extends StatelessWidget {
+class RegisterNameView extends ConsumerStatefulWidget {
+  @override
+  _RegisterNameViewState createState() => _RegisterNameViewState();
+}
+
+class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController teamNameController = TextEditingController();
+  int? selectedIconIndex; // 選択されたアイコンのインデックス
+
+  // 入力されていない項目を取得
+  List<String> _getIncompleteFields() {
+    List<String> incompleteFields = [];
+    if (nameController.text.isEmpty) incompleteFields.add('名前');
+    if (teamNameController.text.isEmpty) incompleteFields.add('チーム名');
+    if (selectedIconIndex == null) incompleteFields.add('アイコンの選択');
+    return incompleteFields;
+  }
+
+  // ダイアログを表示するメソッド
+  void _showDialog(String title, String content) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(content),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,37 +48,28 @@ class RegisterNameView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // アプリアイコン
+              // アプリアイコン（選択されたアイコンを表示）
               Container(
-                width: 100,
-                height: 100,
+                width: 120,
+                height: 120,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(16),
                 ),
-                child: Center(
-                  child: Text(
-                    'アプリアイコン',
-                    style: TextStyle(color: Colors.black54),
-                  ),
-                ),
+                child: selectedIconIndex != null
+                    ? Image.asset(
+                        'assets/images/icon${selectedIconIndex! + 1}.png',
+                        fit: BoxFit.cover,
+                      )
+                    : Center(
+                        child: Text(
+                          'アイコンを選んで',
+                          style: TextStyle(color: Colors.black54),
+                        ),
+                      ),
               ),
-              SizedBox(height: 16),
-              
-              // タイトル
-              Text(
-                '懇親会マッチングサービス',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 24),
+              SizedBox(height: 30),
 
-              // アイコンを選択
-              Text(
-                'アイコンを選択',
-                style: TextStyle(fontSize: 16),
-              ),
-              SizedBox(height: 12),
-              
               // アイコンの丸いボタン
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -48,17 +77,28 @@ class RegisterNameView extends StatelessWidget {
                   5,
                   (index) => Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    child: CircleAvatar(
-                      radius: 24,
-                      backgroundColor: Colors.grey[300],
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedIconIndex = index; // アイコン選択時にインデックスを更新
+                        });
+                      },
+                      child: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: selectedIconIndex == index
+                            ? Colors.blue
+                            : Colors.grey[300],
+                        backgroundImage: AssetImage('assets/images/icon${index + 1}.png'),
+                      ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 40),
 
               // 名前入力
               TextField(
+                controller: nameController,
                 decoration: InputDecoration(
                   labelText: '名前',
                   filled: true,
@@ -73,6 +113,7 @@ class RegisterNameView extends StatelessWidget {
 
               // チーム名入力
               TextField(
+                controller: teamNameController,
                 decoration: InputDecoration(
                   labelText: 'チーム名',
                   filled: true,
@@ -83,12 +124,23 @@ class RegisterNameView extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 36),
 
               // スタートボタン
               ElevatedButton(
                 onPressed: () {
-                  // ボタン押下時の処理
+                  final incompleteFields = _getIncompleteFields();
+                  if (incompleteFields.isEmpty) {
+                    // フォームが完了している場合、完了メッセージをダイアログで表示
+                    _showDialog('成功！', '完了しました。');
+                    // 必要に応じて画面遷移のコードを追加
+                  } else {
+                    // フォームが完了していない場合、未入力項目をダイアログで表示
+                    _showDialog(
+                      'エラー',
+                      '以下の項目を入力してください\n\n' + incompleteFields.join('\n'),
+                    );
+                  }
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.grey[300],
