@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:production/feature/regist_profile/regist_my_experience_view.dart';
 
 class RegisterNameView extends ConsumerStatefulWidget {
   @override
@@ -88,7 +89,8 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
                         backgroundColor: selectedIconIndex == index
                             ? Colors.blue
                             : Colors.grey[300],
-                        backgroundImage: AssetImage('assets/images/icon${index + 1}.png'),
+                        backgroundImage:
+                            AssetImage('assets/images/icon${index + 1}.png'),
                       ),
                     ),
                   ),
@@ -133,6 +135,11 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
                   if (incompleteFields.isEmpty) {
                     // フォームが完了している場合、完了メッセージをダイアログで表示
                     _showDialog('成功！', '完了しました。');
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegistMyExperienceView()),
+                    );
                     // 必要に応じて画面遷移のコードを追加
                   } else {
                     // フォームが完了していない場合、未入力項目をダイアログで表示

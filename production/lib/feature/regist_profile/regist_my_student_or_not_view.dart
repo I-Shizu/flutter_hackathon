@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:production/components/profile_register_view_component.dart';
-import 'package:production/feature/regist_profile/regist_my_student_or_not_view.dart';
-import 'package:production/feature/regist_profile/regist_want_student_or_not.dart';
+import 'package:production/feature/regist_profile/regist_want_experience_view.dart';
 
-class RegistMyJobView extends StatelessWidget {
-  const RegistMyJobView({super.key});
+class RegistMyStudentOrNotView extends StatelessWidget {
+  const RegistMyStudentOrNotView({super.key});
 
-  static List<String> btnTextList = ['エンジニア', 'デザイナー', 'その他'];
+  static List<String> btnTextList = ['学生', '社会人'];
 
   @override
   Widget build(BuildContext context) {
     return ProfileRegisterViewComponent(
-      profileTitle: '職業',
+      profileTitle: '学生or社会人',
       btnTextList: btnTextList,
       appBarTitle: 'プロフィール登録',
       isProfileSubmitBtn: false,
@@ -20,8 +19,7 @@ class RegistMyJobView extends StatelessWidget {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const RegistMyStudentOrNotView(),
-          ),
+              builder: (context) => const RegistWantExperienceView()),
         );
       },
     );
