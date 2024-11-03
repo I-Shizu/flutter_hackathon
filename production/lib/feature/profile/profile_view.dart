@@ -41,7 +41,7 @@ class ProfileView extends StatelessWidget {
               SizedBox(height: 4),
               // Lottie animation
               Lottie.asset(
-                otherUser.totalpoint != null && otherUser.totalpoint! >= 80
+                otherUser.totalpoint != null && otherUser.totalpoint! >= 100
                     ? 'assets/lottie/morehot_animation.json'
                     : 'assets/lottie/hot_animation.json',
                 width: 60,
@@ -55,7 +55,7 @@ class ProfileView extends StatelessWidget {
               ),
               // _ProfileCard(label: '好きなパッケージ: ${otherUser.profileFavPackage}'),
               _ProfileCard(label: '趣味: ${otherUser.profileHobbies.join(', ')}'),
-              _ProfileCard(label: '特徴: ${otherUser.profilePersonFeat}'),
+              // _ProfileCard(label: '特徴: ${otherUser.profilePersonFeat}'),
               _ProfileCard(label: 'ホット度: ${otherUser.totalpoint.toString()}'),
               SizedBox(height: 16),
             ],

@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:production/feature/matching_user_list/my_user_provider.dart';
 import 'package:production/models/other_user_model.dart';
+import 'package:production/providers/profile_provider.dart';
 import 'package:production/repositories/user_data_repository.dart';
 import 'package:production/services/matching_calculator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,7 +11,10 @@ part 'matching_user_list_view_model.g.dart';
 class MatchingUserListViewModel extends _$MatchingUserListViewModel {
   @override
   Stream<List<OtherUserModel>> build() {
-    final myUser = ref.watch(myUserProvider); // MyUserModelのインスタンスを取得
+    final registerProfileViewModel = ref.watch(myProfileProvider);
+    final myUser = registerProfileViewModel;
+    print('myUser: $myUser');
+
     final userRepository =
         ref.watch(userDataRepositoryProvider); // UserDataRepositoryを取得
     final calculator = MatchingCalculator();
