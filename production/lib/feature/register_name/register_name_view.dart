@@ -12,17 +12,24 @@ class RegisterNameView extends ConsumerStatefulWidget {
 
 class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
   final TextEditingController nameController = TextEditingController();
-  final TextEditingController teamNameController = TextEditingController();
-  // late RegistProfileViewModel registProfileNotifier;
   final RegisterProfileViewModel registerProfileViewModel =
       RegisterProfileViewModel();
   int? selectedIconIndex; // 選択されたアイコンのインデックス
+  String? selectedTeam; // 選択されたチーム名
+
+  // 仮のチーム名リスト
+  final List<String> teamNames = [
+    'チームごった煮', '&AIハッカソン部大阪チーム', 'FukuokaFlutterFanclub', '&AIハッカソン部東京チーム',
+    'origin master', 'PlayGround', 'ほぼドコドア', 'チームプラゴ',
+    'Diamond', 'アジャイルビギナーズリターンズ', 'ながたま', 'windy',
+    'マリディ', 'UI=F(State)', 'TK-Studio', 'BEENgineer'
+  ];
 
   // 入力されていない項目を取得
   List<String> _getIncompleteFields() {
     List<String> incompleteFields = [];
     if (nameController.text.isEmpty) incompleteFields.add('名前');
-    if (teamNameController.text.isEmpty) incompleteFields.add('チーム名');
+    if (selectedTeam == null) incompleteFields.add('チーム名');
     if (selectedIconIndex == null) incompleteFields.add('アイコンの選択');
     return incompleteFields;
   }
@@ -46,12 +53,43 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
     );
   }
 
+  // チーム選択ダイアログ
+  void _showTeamSelectionDialog() async {
+    final result = await showDialog<String>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('チームを選択'),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: teamNames.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(teamNames[index]),
+                  onTap: () {
+                    Navigator.pop(context, teamNames[index]);
+                  },
+                );
+              },
+            ),
+          ),
+        );
+      },
+    );
+
+    if (result != null) {
+      setState(() {
+        selectedTeam = result;
+      });
+    }
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     registerProfileViewModel.setRef(ref);
-    //registProfileNotifier = ref.read(registProfileViewModelProvider.notifier);
   }
 
   @override
@@ -127,16 +165,27 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
               ),
               const SizedBox(height: 16),
 
-              // チーム名入力
-              TextField(
-                controller: teamNameController,
-                decoration: InputDecoration(
-                  labelText: 'チーム名',
-                  filled: true,
-                  fillColor: Colors.grey[300],
-                  border: OutlineInputBorder(
+              // チーム名のドロップダウンボタン（カスタムダイアログ使用）
+              GestureDetector(
+                onTap: _showTeamSelectionDialog,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(8),
-                    borderSide: BorderSide.none,
+                    border: Border.all(color: Colors.grey),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        selectedTeam ?? 'チーム名を選択',
+                        style: TextStyle(
+                          color: selectedTeam == null ? Colors.black54 : Colors.black,
+                        ),
+                      ),
+                      const Icon(Icons.arrow_drop_down),
+                    ],
                   ),
                 ),
               ),
@@ -149,8 +198,7 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
                   if (incompleteFields.isEmpty) {
                     registerProfileViewModel.saveUserId(returnUuidV4());
                     registerProfileViewModel.saveName(nameController.text);
-                    registerProfileViewModel
-                        .saveTeamName(teamNameController.text);
+                    registerProfileViewModel.saveTeamName(selectedTeam!);
                     registerProfileViewModel.saveIcon(selectedIconIndex!);
                     // フォームが完了している場合、完了メッセージをダイアログで表示
                     _showDialog('成功！', '完了しました。');
@@ -159,7 +207,6 @@ class _RegisterNameViewState extends ConsumerState<RegisterNameView> {
                       MaterialPageRoute(
                           builder: (context) => const RegistMyExperienceView()),
                     );
-                    // 必要に応じて画面遷移のコードを追加
                   } else {
                     // フォームが完了していない場合、未入力項目をダイアログで表示
                     _showDialog(

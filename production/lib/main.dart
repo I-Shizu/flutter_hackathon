@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sample App',
       theme: AppTheme.lightTheme,
-      // PostScreenをトップ画面に設定
+      debugShowCheckedModeBanner: false, // ここでデバッグバナーを非表示にする
       home: RegisterNameView(),
     );
   }
