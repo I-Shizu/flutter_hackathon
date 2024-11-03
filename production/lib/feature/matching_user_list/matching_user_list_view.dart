@@ -6,7 +6,6 @@ import 'package:production/feature/regist_profile/register_profile_view_model.da
 import 'package:production/models/other_user_model.dart';
 import 'package:production/models/my_user_model.dart';
 import 'matching_user_list_view_model.dart';
-import 'package:production/feature/matching_user_list/my_user_provider.dart';
 
 class MatchingUserListView extends ConsumerStatefulWidget {
   @override
@@ -293,7 +292,7 @@ class _MatchingUserListViewState extends ConsumerState<MatchingUserListView> {
                             width: 40,
                             height: 40,
                             child: Lottie.asset(
-                              user.totalpoint != null && user.totalpoint! >= 80
+                              user.totalpoint != null && user.totalpoint! >= 100
                                   ? 'assets/lottie/morehot_animation.json'
                                   : 'assets/lottie/hot_animation.json',
                             ),
