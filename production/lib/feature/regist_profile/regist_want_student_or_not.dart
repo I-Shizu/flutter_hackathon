@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:production/components/profile_register_view_component.dart';
@@ -10,6 +11,11 @@ class RegistWantStudentOrNotView extends StatelessWidget {
 
   static List<String> btnTextList = ['学生', '社会人'];
 
+  Future<void> _playSound() async {
+    final player = AudioPlayer();
+    await player.play(AssetSource('sounds/regist_btn.mp3'));
+  }
+
   @override
   Widget build(BuildContext context) {
     return ProfileRegisterViewComponent(
@@ -21,10 +27,13 @@ class RegistWantStudentOrNotView extends StatelessWidget {
         int selectedIndex,
         RegisterProfileViewModel registerProfileViewModel,
       ) async {
+        // 効果音を再生
+        await _playSound();
+
+        // ViewModelでriverpodに値を渡す処理を行う
         registerProfileViewModel
             .saveAskIsStudent(studentOrWorkingList[selectedIndex] == '学生');
         await registerProfileViewModel.sendMyData();
-        // print('myProfile: ${registerProfileViewModel.myProfile}');
 
         // 遷移処理
         Navigator.pushAndRemoveUntil(

@@ -1,5 +1,5 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:production/feature/regist_profile/progress_indicator_widget.dart';
 import 'package:production/feature/regist_profile/progress_provider.dart';
@@ -8,6 +8,11 @@ import 'package:production/feature/regist_profile/register_profile_view_model.da
 
 class RegistMyHobbiesView extends ConsumerWidget {
   const RegistMyHobbiesView({super.key});
+
+  Future<void> _playSound() async {
+    final player = AudioPlayer();
+    await player.play(AssetSource('sounds/next_btn.mp3'));
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -55,8 +60,6 @@ class RegistMyHobbiesView extends ConsumerWidget {
                   },
                   maxLines: 3,
                   maxLength: 100,
-                  //expands: true,
-                  // cursorColor: AppColorTheme.color().mainColor,
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                         vertical: 16, horizontal: 12),
@@ -86,9 +89,10 @@ class RegistMyHobbiesView extends ConsumerWidget {
                 child: ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(fixedSize: const Size(280, 48)),
-                  onPressed: () {
+                  onPressed: () async {
                     if (formKey.currentState!.validate()) {
                       formKey.currentState!.save();
+                      await _playSound(); // 効果音を再生
                       if (context.mounted) {
                         ref
                             .read(currentStepProvider.notifier)
@@ -103,7 +107,7 @@ class RegistMyHobbiesView extends ConsumerWidget {
                       }
                     }
                   },
-                  child: const Text('次へ', style: const TextStyle(fontSize: 16)),
+                  child: const Text('次へ', style: TextStyle(fontSize: 16)),
                 ),
               ),
             ],
